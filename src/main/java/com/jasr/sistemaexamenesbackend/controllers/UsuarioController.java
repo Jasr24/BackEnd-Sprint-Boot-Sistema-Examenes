@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.jasr.sistemaexamenesbackend.servicios.Interfases.IUsuarioService;
 
 @RestController //El rescontroller se tienen que usar para manejar lo del json
 @RequestMapping("/usuarios")
+@CrossOrigin("*") //el * permite a cualquier peticion.. get put delete ect.
 public class UsuarioController {
     
     @Autowired
@@ -26,8 +28,8 @@ public class UsuarioController {
 
     @PostMapping("/")
     public Usuario guardarUsuario(@RequestBody Usuario usuario) throws Exception{ //Requesbody es para pasar poder mandar los objetos con sus datos
-
-        Set<UsuarioRol> roles = new HashSet<>(); ///////////////no lo estamos utilizandoo /////////////////////////////
+        usuario.setPerfil("default.png");
+        Set<UsuarioRol> roles = new HashSet<>();
         
         Rol rol = new Rol();
         rol.setRolId(2L);
@@ -36,7 +38,7 @@ public class UsuarioController {
         UsuarioRol usuarioRol = new UsuarioRol();
         usuarioRol.setUsuario(usuario);
         usuarioRol.setRol(rol);
-        //roles.add(usuarioRol);  //Creo que esto le falto al profesor.
+        roles.add(usuarioRol); 
 
         return usuarioService.guardarUsuario(usuario, roles);
     }
