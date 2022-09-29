@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -30,6 +32,7 @@ public class Usuario {
     private String perfil;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usuario")//Cascada.ALL Cuando le haga algo a un Usuario le afectara a sus entidades hijas.. por ejemplo si el usuario tiene direccion y otros registros.. si eliminamos el usuario tambien se eliminara la direccion de ese usuario y el resto de registros.
+    @JsonIgnore //Ignora este atributo el cual no se imprimira en el postman tampoco estara en las tablas de MySQL
     private Set<UsuarioRol> usuarioRoles = new HashSet<>();                             //Fectch.Eagaer de tipo ansioso, de carga ansiosa.. si listamos un usuario por ejemplo en consola, si le haces un sistem.out te imprimira todo sus atributos sin nesesidad de que los llames. y el :LAZY es para que aparesca solo si lo indicas. ejemplo. usuario.nombre y entre otros.
                                                                                         //mappedBy apunta a la entidad propietaria de esta relacion
 

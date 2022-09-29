@@ -25,7 +25,7 @@ public class SistemaExamenesBackendApplication implements CommandLineRunner{//Co
 
 	@Override //Implementando el CommandLineRunner este metodo se ejecutara inicialmente... es como otro metodo que vismos por hay que ejecuta algo antes de empezar algo.
 	public void run(String... args) throws Exception {
-		Usuario usuario = new Usuario();
+		/*Usuario usuario = new Usuario();
 		usuario.setUsername("andres");
 		usuario.setPassword("123456");
 		usuario.setNombre("Andres");
@@ -45,6 +45,6 @@ public class SistemaExamenesBackendApplication implements CommandLineRunner{//Co
 		usuarioRoles.add(usuarioRol);
 
 		Usuario usuarioGuardado = usuarioService.guardarUsuario(usuario, usuarioRoles);
-		System.out.println(usuarioGuardado.getUsername());
+		System.out.println(usuarioGuardado.getUsername());*/
 	}
 }
