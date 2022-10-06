@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,9 +27,14 @@ public class UsuarioController {
     @Autowired
     private IUsuarioService usuarioService; //El profesor uso la clase concreta.. aqui uso la generica.
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     @PostMapping("/")
     public Usuario guardarUsuario(@RequestBody Usuario usuario) throws Exception{ //Requesbody es para pasar poder mandar los objetos con sus datos
         usuario.setPerfil("default.png");
+
+        usuario.setPassword(this.bCryptPasswordEncoder.encode(usuario.getPassword())); //Asi encriptamos la contraseña que registramos en el fron end.. o que enviamos desde el formulario del fron end.
         Set<UsuarioRol> roles = new HashSet<>();
         
         Rol rol = new Rol();
