@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.jasr.sistemaexamenesbackend.entidades.Usuario;
 import com.jasr.sistemaexamenesbackend.entidades.UsuarioRol;
+import com.jasr.sistemaexamenesbackend.exepciones.UsuarioFoundException;
 import com.jasr.sistemaexamenesbackend.repositorios.IRolRepository;
 import com.jasr.sistemaexamenesbackend.repositorios.IUsuarioRepository;
 import com.jasr.sistemaexamenesbackend.servicios.Interfases.IUsuarioService;
@@ -27,7 +28,7 @@ public class UsuarioService implements IUsuarioService{
 
         if(usuarioLocal != null){
             System.out.println("El usuario ya existe");
-            throw new Exception("El usuario ya esta presente");
+            throw new UsuarioFoundException("El usuario ya esta presente");
         } else {
             for (UsuarioRol usuarioRol : usuarioRoles) {
                 rolRepository.save(usuarioRol.getRol());

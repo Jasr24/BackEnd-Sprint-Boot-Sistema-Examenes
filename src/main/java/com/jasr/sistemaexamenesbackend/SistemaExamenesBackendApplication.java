@@ -53,7 +53,7 @@ public class SistemaExamenesBackendApplication implements CommandLineRunner{//Co
 
 			Usuario usuarioGuardado = usuarioService.guardarUsuario(usuario, usuarioRoles);
 			System.out.println(usuarioGuardado.getUsername());
-		} catch (Exception exception){
+		} catch (UsuarioFoundException exception){
 			exception.printStackTrace();
 		}*/
 	}
