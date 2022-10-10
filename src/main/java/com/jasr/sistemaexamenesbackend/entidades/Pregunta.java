@@ -20,7 +20,7 @@ public class Pregunta {
     @Column(length = 5000) //Un length maximo de 5000 caracteres
     private String  contenido;
 
-    private String imggen;
+    private String imagen;
     private String opcion1;
     private String opcion2;
     private String opcion3;
@@ -49,12 +49,12 @@ public class Pregunta {
         this.contenido = contenido;
     }
 
-    public String getImggen() {
-        return imggen;
+    public String getImagen() {
+        return imagen;
     }
 
-    public void setImggen(String imggen) {
-        this.imggen = imggen;
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public String getOpcion1() {
