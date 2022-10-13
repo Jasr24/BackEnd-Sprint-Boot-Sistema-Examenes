@@ -1,11 +1,13 @@
 package com.jasr.sistemaexamenesbackend.servicios;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jasr.sistemaexamenesbackend.entidades.Categoria;
 import com.jasr.sistemaexamenesbackend.entidades.Examen;
 import com.jasr.sistemaexamenesbackend.repositorios.IExamenRepository;
 import com.jasr.sistemaexamenesbackend.servicios.Interfases.IExamenService;
@@ -53,6 +55,11 @@ public class ExamenService implements IExamenService{
 
         //La iso mi hermano es mas rapida.
         examenRepository.deleteById(examenId);
+    }
+
+    @Override
+    public List<Examen> listarExamenesDeUnaCategoria(Categoria categoria) {
+        return this.examenRepository.findByCategoria(categoria);
     }
     
 }
