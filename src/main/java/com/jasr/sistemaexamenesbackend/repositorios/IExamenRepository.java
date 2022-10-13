@@ -10,5 +10,7 @@ import com.jasr.sistemaexamenesbackend.entidades.Examen;
 public interface IExamenRepository extends JpaRepository<Examen,Long>{
 
     List<Examen> findByCategoria(Categoria categoria);
+    List<Examen> findByActivo(Boolean estado);
+    List<Examen> findByCategoriaAndActivo(Categoria categoria, Boolean estado);
     
 }

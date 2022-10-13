@@ -14,5 +14,7 @@ public interface IExamenService {
     Examen obtenerExamen(Long ExamenId);
     void eliminarExamen(Long examenId);
     List<Examen> listarExamenesDeUnaCategoria(Categoria categoria);
+    List<Examen> obtenerExamenesActivos();
+    List<Examen> obtenerExamenesActivosDeUnaCategoria(Categoria categoria);
 
 }
