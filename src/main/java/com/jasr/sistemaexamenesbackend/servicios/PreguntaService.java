@@ -47,5 +47,10 @@ public class PreguntaService implements IPreguntaService{
     public void eliminarPregunta(Long preguntaId) {
         preguntaRepository.deleteById(preguntaId);
     }
+
+    @Override
+    public Pregunta listarPregunta(Long preguntaId) {
+        return this.preguntaRepository.getOne(preguntaId);
+    }
     
 }

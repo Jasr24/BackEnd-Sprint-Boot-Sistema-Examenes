@@ -81,4 +81,32 @@ public class PreguntaController {
         Set<Pregunta> preguntas = preguntaService.ObtenerPreguntasDelExamen(examen);
         return ResponseEntity.ok(preguntas);
     }
+
+    //Nota: respuestaDada viene del fornt end.
+    @PostMapping("/evaluar-examen")
+    public ResponseEntity<?> evaluarExamen(@RequestBody List<Pregunta> preguntas){
+        double puntosMaximos = 0;
+        Integer respuetasCorrectas = 0;
+        Integer intentos = 0;
+
+        for (Pregunta p : preguntas) {
+            Pregunta pregunta = this.preguntaService.listarPregunta(p.getPreguntaId());
+            if(pregunta.getRespuesta() == p.getRespuesta()){
+                respuetasCorrectas++;
+                double puntos = Double.parseDouble(preguntas.get(0).getExamen().getPuntosMaximos())/preguntas.size();
+                puntosMaximos += puntos;
+            }
+
+            if(p.getRespuesta() != null){
+                intentos ++;
+            }
+        }
+
+        Map<String, Object> respuestas = new HashMap<>();
+        respuestas.put("puntosMaximos", puntosMaximos);
+        respuestas.put("respuetasCorrectas", respuetasCorrectas);
+        respuestas.put("intentos", intentos);
+
+        return ResponseEntity.ok(respuestas);
+    }
 }

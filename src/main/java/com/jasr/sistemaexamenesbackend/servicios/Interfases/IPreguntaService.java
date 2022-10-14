@@ -13,4 +13,5 @@ public interface IPreguntaService {
     Pregunta obtenerPregunta(Long preguntaId);
     Set<Pregunta> ObtenerPreguntasDelExamen(Examen examen);
     void eliminarPregunta(Long preguntaId);
+    Pregunta listarPregunta(Long preguntaId);
 }
